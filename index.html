@@ -77,16 +77,21 @@
 
 <script>
     const domainsData = [
-        { domain: "Santé & Social", jobs: ["Infirmier", "Aide-soignant", "Médecin généraliste", "Pharmacien", "Auxiliaire de vie", "Éducateur spécialisé"] },
+        { domain: "Santé & Social", jobs: ["Infirmier / Aide Soignant", "Kinésithérapeute", "Médecin généraliste", "Pharmacien", "Auxiliaire de vie", "Éducateur spécialisé"] },
         { domain: "Artisanat & Bâtiment", jobs: ["Boulanger-Pâtissier", "Électricien", "Plombier-Chauffagiste", "Maçon", "Menuisier", "Peintre en bâtiment"] },
         { domain: "Commerce & Vente", jobs: ["Vendeur en magasin", "Boucher-Charcutier", "Coiffeur", "Esthéticien", "Chef de rayon", "Fleuriste"] },
         { domain: "Transport & Automobile", jobs: ["Mécanicien automobile", "Chauffeur routier", "Conducteur de bus", "Carrossier", "Logisticien", "Livreur"] },
         { domain: "Sécurité & Défense", jobs: ["Pompier", "Gendarme", "Policier", "Agent de sécurité", "Militaire", "Gardien de la paix"] },
-        { domain: "Enseignement & Éducation", jobs: ["Professeur des écoles", "Professeur de collège/lycée", "Éducateur sportif", "Animateur périscolaire", "Surveillant / AED", "CPE"] },
-        { domain: "Informatique & Numérique", jobs: ["Développeur web", "Technicien support IT", "Community manager", "Infographiste", "Expert cybersécurité", "Vendeur high-tech"] },
-        { domain: "Administration, Droit & Banque", jobs: ["Secrétaire", "Comptable", "Conseiller bancaire", "Agent immobilier", "Employé de mairie", "Assistant juridique"] },
-        { domain: "Restauration & Tourisme", jobs: ["Cuisinier", "Serveur en restaurant", "Réceptionniste d'hôtel", "Boucher", "Pâtissier", "Employé de fast-food"] },
-        { domain: "Agriculture & Environnement", jobs: ["Agriculteur", "Paysagiste / Jardinier", "Vétérinaire", "Agent espaces verts", "Éleveur", "Technicien traitement déchets"] }
+        { domain: "Enseignement & Éducation", jobs: ["Professeur des écoles (maternelle/primaire)", "Professeur de collège/lycée", "Éducateur sportif", "Animateur périscolaire", "Surveillant / Assistant d'éducation", "Conseiller principal d'éducation (CPE)"] },
+        { domain: "Informatique & Numérique", jobs: ["Développeur web", "Technicien support informatique", "Community manager", "Infographiste", "Expert cybersécurité", "Vendeur high-tech"] },
+        { domain: "Administration, Droit & Banque", jobs: ["Secrétaire / Assistant de gestion", "Comptable", "Conseiller bancaire", "Agent immobilier", "Employé de mairie / administration", "Assistant juridique"] },
+        { domain: "Restauration & Tourisme", jobs: ["Cuisinier", "Serveur en restaurant", "Réceptionniste d'hôtel", "Boucher", "Pâtissier", "Employé de restauration rapide"] },
+        { domain: "Agriculture & Environnement", jobs: ["Agriculteur / Polyculteur", "Paysagiste / Jardinier / Élagueur", "Vétérinaire", "Agent d'entretien des espaces verts", "Éleveur", "Technicien en traitement des déchets"] },
+        { domain: "Art, Design & Culture", jobs: ["Graphiste", "Photographe", "Bibliothécaire", "Animateur socioculturel", "Coiffeur-Styliste", "Décorateur d'intérieur / Architecte"] },
+        { domain: "Finance & Gestion", jobs: ["Comptable", "Assistant de gestion", "Conseiller bancaire", "Secrétaire comptable", "Gestionnaire de paie", "Contrôleur de gestion"] },
+        { domain: "Ressources Humaines", jobs: ["Assistant RH", "Chargé de recrutement", "Gestionnaire de formation", "Secrétaire administratif", "Conseiller en insertion", "Chargé de communication interne"] },
+        { domain: "Ingénierie & Industrie", jobs: ["Technicien de maintenance", "Opérateur de production", "Dessinateur-industriel", "Électricien industriel", "Responsable qualité", "Logisticien"] },
+        { domain: "Communication & Marketing", jobs: ["Community manager", "Chargé de communication", "Graphiste", "Secrétaire de rédaction", "Attaché de presse", "Vendeur conseil"] }
     ];
 
     let selectedJobs = [];
@@ -131,13 +136,13 @@
             selectedJobs.splice(index, 1);
             cardElement.classList.remove("selected");
         } else {
-            // Vérification de la limite globale (6 métiers max)
+            // Limite globale de 6 métiers max
             if (selectedJobs.length >= maxSelection) {
                 alert("Tu as déjà sélectionné 6 métiers maximum ! Clique sur un métier déjà choisi pour le désélectionner.");
                 return;
             }
 
-            // Vérification de la limite par domaine (2 métiers max)
+            // Limite de 2 métiers max par domaine
             const domainObj = domainsData.find(d => d.domain === domainName);
             const countInDomain = selectedJobs.filter(job => domainObj.jobs.includes(job)).length;
 
